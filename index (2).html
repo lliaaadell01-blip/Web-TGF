@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Halaman pengembangan web oleh kelompok kami, dengan tips, tim, dan fitur interaktif untuk pemula.">
+    <title>Pengembangan Web - Kelompok Kami</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/007bff/ffffff?text=Pengembangan+Web+Modern') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            min-height: 60vh;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+        }
+        .hero h1, .hero p {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .navbar {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            font-size: 1.5em;
+            text-decoration: none;
+            color: white;
+        }
+        .navbar-toggler {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            margin-left: 20px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+        }
+        .nav-link:hover {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        .col-12 {
+            flex: 0 0 100%;
+            padding: 0 10px;
+        }
+        .justify-content-center {
+            justify-content: center;
+        }
+        .col-md-3 {
+            flex: 0 0 25%;
+            padding: 0 10px;
+        }
+        .col-sm-6 {
+            flex: 0 0 50%;
+            padding: 0 10px;
+        }
+        .team-member {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .team-member:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .tips li {
+            background: #e3f2fd;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid #2196f3;
+            border-radius: 8px;
+            transition: background 0.3s;
+            list-style: none;
+        }
+        .tips li:hover {
+            background: #bbdefb;
+        }
+        .interactive-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #feca57, #ff6b6b);
+            transform: scale(1.05);
+        }
+        .btn-outline-primary {
+            background: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+        .btn-outline-primary:hover {
+            background: #007bff;
+            color: white;
+        }
+        .text-success {
+            color: #28a745;
+        }
+        .text-danger {
+            color: #dc3545;
+        }
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #343a40;
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+            .navbar-nav.show {
+                display: flex;
+            }
+            .navbar-toggler {
+                display: block;
+            }
+            .col-md-3 {
+                flex: 0 0 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">&#128187; WebDev Kelompok</a>
+        <button class="navbar-toggler" onclick="toggleNav()">☰</button>
+        <ul class="navbar-nav" id="navbarNav">
+            <li class="nav-item"><a class="nav-link" href="#intro">&#127968; Intro</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tips">&#128161; Tips</a></li>
+            <li class="nav-item"><a class="nav-link" href="#team">&#128101; Tim</a></li>
+            <li class="nav-item"><a class="nav-link" href="#interactive">&#10067; Interaktif</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1 class="display-4">Jelajahi Dunia Pengembangan Web</h1>
+        <p class="lead">Dibuat oleh kelompok kreatif kami untuk inspirasi dan pembelajaran!</p>
+    </div>
+
+    <div class="container my-5">
+        <section id="intro" class="mb-5 fade-in">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h2>&#128161; Apa Itu Pengembangan Web?</h2>
+                    <p>Pengembangan web adalah proses membuat dan mengelola website atau aplikasi yang bisa dibuka melalui browser seperti Chrome atau Edge.</p>
+                    <p>Front end adalah bagian yang langsung dilihat dan digunakan oleh pengunjung website.</p>
+                    <p>Front end biasanya menggunakan HTML untuk membuat struktur, CSS untuk mengatur tampilan seperti warna dan tata letak, serta JavaScript untuk membuat interaksi seperti tombol dan animasi. Contohnya menu yang bisa dibuka, tombol yang bisa diklik, atau tampilan yang menyesuaikan layar HP dan laptop.</p>
+                    <p>Back end adalah bagian di balik layar yang mengatur sistem dan data website.</p>
+                    <p>Back end biasanya menggunakan bahasa seperti PHP, Python, Node js, atau Java. Bagian ini mengatur login, penyimpanan data pengguna, dan proses yang berhubungan dengan database.</p>
+                    <p>Database adalah tempat menyimpan data website seperti akun, komentar, atau produk. Contohnya MySQL, PostgreSQL, dan MongoDB</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tips" class="mb-5 fade-in">
+            <h2>&#128161; Tips Menarik untuk Pemula</h2>
+            <ul class="tips">
+                <li><strong>HTML & CSS:</strong> Fondasi setiap website. Mulai dengan tutorial gratis di W3Schools.</li>
+                <li><strong>JavaScript:</strong> Tambahkan interaktivitas. Coba buat kalkulator sederhana!</li>
+                <li><strong>Framework Populer:</strong> React untuk UI dinamis, atau Vue.js untuk kemudahan.</li>
+                <li><strong>Responsivitas:</strong> Pastikan situs Anda terlihat bagus di semua perangkat.</li>
+                <li><strong>Praktik Coding:</strong> Gunakan platform seperti CodePen atau GitHub untuk berbagi proyek.</li>
+            </ul>
+        </section>
+
+        <section id="team" class="mb-5 fade-in">
+            <h2>&#128101; Kelompok Kami</h2>
+            <p>Tim berbakat ini berkolaborasi untuk menciptakan konten web yang luar biasa:</p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 col-sm-6 team-member">1. Adelia Rahma P. (01)</div>
+                <div class="col-md-3 col-sm-6 team-member">2. Ariska Nayla F. (04)</div>
+                <div class="col-md-3 col-sm-6 team-member">3. Cinta octaviani S. (07)</div>
+                <div class="col-md-3 col-sm-6 team-member">4. Ervino Putra P. (11)</div>
+                <div class="col-md-3 col-sm-6 team-member">5. fadhil Perfana P. (13)</div>
+                <div class="col-md-3 col-sm-6 team-member">6. Marsya Aisyah N. (16)</div>
+                <div class="col-md-3 col-sm-6 team-member">7. Muhammad Miftakhul H. (25)</div>
+                <div class="col-md-3 col-sm-6 team-member">8. Muhammad Riki S. (28)</div>
+            </div>
+        </section>
+
+        <section id="interactive" class="interactive-section fade-in">
+            <h2>&#10067; Fitur Interaktif: Quiz Cepat!</h2>
+            <p>Jawab pertanyaan ini untuk menguji pengetahuan Anda tentang web dev.</p>
+            <div class="mb-3">
+                <p><strong>Apa singkatan dari HTML?</strong></p>
+                <button class="btn btn-outline-primary" onclick="checkAnswer('HyperText Markup Language')">&#9989; HyperText Markup Language</button>
+                <button class="btn btn-outline-primary" onclick="checkAnswer('Wrong')">&#10060; High Tech Machine Learning</button>
+                <button class="btn btn-outline-primary" onclick="checkAnswer('Wrong')">&#10060; Home Tool Management List</button>
+            </div>
+            <p id="quiz-result"></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kelompok Pengembangan Web. Dibuat dengan ❤️ menggunakan CSS & kreativitas.</p>
+        <div>
+            <a href="#">&#128247;</a>
+            <a href="#">&#128038;</a>
+            <a href="#">&#128187;</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('navbarNav');
+            nav.classList.toggle('show');
+        }
+        function checkAnswer(answer) {
+            const result = document.getElementById('quiz-result');
+            if (answer === 'HyperText Markup Language') {
+                result.innerHTML = '<span class="text-success">&#9989; Benar! 🎉</span>';
+            } else {
+                result.innerHTML = '<span class="text-danger">&#10060; Salah, coba lagi! 😊</span>';
+            }
+        }
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('click', () => {
+                alert('Halo, ' + member.textContent + '! Kamu bagian dari tim hebat ini.');
+            });
+        });
+        // Efek fade-in pada load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+  </html>
